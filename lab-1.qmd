@@ -68,7 +68,23 @@ ggplot(midwest, aes(x = popdensity)) +
 
 ### Question 3
 
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = state, shape = state )) +
+  geom_point() +
+  labs(
+    title = "Individuals below the Poverty Line by Indviduals with College Degree, by percentage",
+    x = "People with College Degree (%)",
+    y = "People below the Poverty Line (%)",
+  )
+```
+
+Generally, the trend between percent of popultion with a college degree and the percentage below the poverty line reflects exponential decay. This implies that a greater percentage of the population having a college degree correlates to a lower percentage of the population being below the poverty line. Additionally, there are potential asymptotes that imply that both the percentage of population below the poverty line and population that has college degrees is limited and can never realistically reach 100% for both variables, and the percentage of population below the poverty line settles to about 0-26% once the population with college degrees reach aboce 35%. However, Jackson County in Illinois is an outlier to this general standard, as its data point reflects 36.6% of the population with college degrees and 28.4% of poulation below the poverty line. The graph above shows the data between states, and all the states very similarly follow exponetial decaying trend line. All counties in Ohio have a very similar range with very few outliers, and Wishcosin have a significant outlier in Menominee County, which has a 48.7% of population below pverty line and 7.3% of population having college degrees.
+
 ### Question 4
+
+```{r}
+
+```
 
 ### Question 5
 

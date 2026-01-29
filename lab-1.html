@@ -225,6 +225,23 @@ The following object is masked from 'package:readr':
 </section>
 <section id="question-3" class="level3">
 <h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(midwest, <span class="fu">aes</span>(<span class="at">x =</span> percollege, <span class="at">y =</span> percbelowpoverty, <span class="at">colour =</span> state, <span class="at">shape =</span> state )) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Individuals below the Poverty Line by Indviduals with College Degree, by percentage"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"People with College Degree (%)"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"People below the Poverty Line (%)"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lab-1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Generally, the trend between percent of popultion with a college degree and the percentage below the poverty line reflects exponential decay. This implies that a greater percentage of the population having a college degree correlates to a lower percentage of the population being below the poverty line. Additionally, there are potential asymptotes that imply that both the percentage of population below the poverty line and population that has college degrees is limited and can never realistically reach 100% for both variables, and the percentage of population below the poverty line settles to about 0-26% once the population with college degrees reach aboce 35%. However, Jackson County in Illinois is an outlier to this general standard, as its data point reflects 36.6% of the population with college degrees and 28.4% of poulation below the poverty line. The graph above shows the data between states, and all the states very similarly follow exponetial decaying trend line. All counties in Ohio have a very similar range with very few outliers, and Wishcosin have a significant outlier in Menominee County, which has a 48.7% of population below pverty line and 7.3% of population having college degrees.</p>
 </section>
 <section id="question-4" class="level3">
 <h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
