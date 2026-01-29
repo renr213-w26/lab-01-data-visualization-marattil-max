@@ -100,12 +100,57 @@ I prefer the previous graph as it is a concise way to show almost the same data 
 ### Question 5
 
 ```{r}
+ggplot(midwest, aes(x = state, y = area, colour = state)) +
+  geom_boxplot() +
+  labs(
+    title = "Area of County by State",
+    x = "State",
+    y = "Area of County",
+  )
 
 ```
 
+While the median for county size changes per state, the area for counties generlly stay within the same range. Within the state itself, the county areas can be quite limited as seen in Indiana, with its very small quartile range, or quite large as seen in Wisconsin, with a large median box. In the context of the graph, outliers represent states with counties that have significantly greater or smaller areas compared to the whole. This idea can be applied to Illinois, as we can interpret the one outlier to mean that, overall, all the counties in Illinois are relatively similar in size. The greatest outlier is in Marquette County, Michigan 
+
 ### Question 6
 
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+
+ggplot(midwest, aes(x = state, fill = metro))+
+  geom_bar()+
+  labs(
+    title = "Metro Counties vs Non-Metro Counties per State",
+    x = "State",
+    y = "Proportion",
+  )+ scale_y_continuous(label = label_number(scale = 1/100))+
+  coord_cartesian(ylim = c(0,100))
+
+
+  
+
+```
+
+In general, there is a trend between all states of the amount of non-metro counties being equal to or greater than the amount of metro counties in the state. For Illinois, Indiana, Michigan and Wisconsin, there is a greater than 50% of the counties are non-metro, with almost 75% of counties in Illinois being non-metro. Ohio can be highlighted for having an almost an equal proportion of metro to non-metro counties (50%).
+
 ### Question 7
+
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = percwhite)) +
+  geom_point(size = 2, alpha = 0.5 ) + 
+  facet_wrap(~ state)+
+  labs(
+    x = "% college educated", 
+    y = "% below the poverty line", 
+    title = "Poverty vs. College Education by State, with racial composition per county"
+  )
+
+```
+
+Menominee County is the greatest outlier in Wisconsin.
+
+When comparing the racial composition of all the counties/states, the data shows that there is generally a low population of Black Americans, American Indians, Asians, and Other races. Thus, there is a greater caucasian population in the Midwest as a whole.
 
 ## Part 2
 
