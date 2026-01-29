@@ -156,6 +156,38 @@ When comparing the racial composition of all the counties/states, the data shows
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
 
+I think that a larger land area will correlate to a lesser population density, therefore a negative relationship.
+
+```{r}
+ggplot(nc_county, aes(x = land_area_mi2, y = density )) +
+  geom_point() +
+  geom_smooth(se = FALSE)+
+  labs(
+    title = "Population Density vs Land Area(mi^2)",
+    x = "Land Area (mi^2)",
+    y = "Population density",
+  )
+```
+
+Based on the graph, my guess for the relationship between Land area and Population Density was incorrect. The graph shows a generally even and stable population density count for any change in land area throught smooth curve fit line, meaning there is no relationship between the two variables.
+
 ### Question 9
+
+```{r}
+ggplot(nc_county, aes(x = land_area_m2, y = density )) +
+  geom_point() +
+  geom_smooth(se = FALSE)+
+  labs(
+    title = "Population Density vs Land Area(m^2)",
+    x = "Land Area (m^2)",
+    y = "Population density",
+  )
+```
+
+The current is very similar to the graph created in exercise 8, with the same trend line. Thus, the relation between population density and land area in square metres is the same as land area in square miles. This is because the unit of measurement does not affect the association of two variables without a relationship.
