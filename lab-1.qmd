@@ -54,6 +54,18 @@ ggplot(midwest, aes(x = popdensity)) +
 
 ### Question 2
 
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_boxplot() +
+  labs(
+    title = "Population density of midwesten counties",
+    x = "Population Density",
+    y = "Count",
+  )
+```
+
+​​The whole range of population density by count is very wide, with most counties falling in the 620 to 2330 persons/unit area on average. Considering the whole min to max range, the population often falls on the lower end of the scale, with a good handful of counties with populations that are significantly greater. For example, the greatest outlier is Cook County in Illinois with a population of 88018 person/unit area. We can understand this as relevant, as Cook County has the largest number of municipalities, including the city of Chicago, thus leading to its dense population and outlier status in the midwest data set.
+
 ### Question 3
 
 ### Question 4
