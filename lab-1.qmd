@@ -72,9 +72,9 @@ ggplot(midwest, aes(x = popdensity)) +
 ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = state, shape = state )) +
   geom_point() +
   labs(
-    title = "Individuals below the Poverty Line by Indviduals with College Degree, by percentage",
-    x = "People with College Degree (%)",
-    y = "People below the Poverty Line (%)",
+    title = "Population below the Poverty Line by Population with College Degree, by percentage",
+    x = "Population with College Degree (%)",
+    y = "Population below the Poverty Line (%)",
   )
 ```
 
@@ -83,10 +83,25 @@ Generally, the trend between percent of popultion with a college degree and the 
 ### Question 4
 
 ```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = state, shape = state )) +
+  geom_point() +
+  facet_wrap(~state)+
+  geom_smooth(se = FALSE)+
+  labs(
+    title = "Population below the Poverty Line by Population with College Degree, by percentage",
+    x = "Population with College Degree (%)",
+    y = "Population below the Poverty Line (%)",
+  )
 
 ```
 
+I prefer the previous graph as it is a concise way to show almost the same data in the current graph. This graph, on the otherhand, separates the data by states in the 3 different ways (colour, shape, and 5 seperate graphs), which makes it difficult to understand the relation between states. However, the addition of the smooth curve fit is a really helpful way to identify trends in the data, and I believe the addition of geom_smooth() in the previous graph will help improve understanding and interpretation of the data.
+
 ### Question 5
+
+```{r}
+
+```
 
 ### Question 6
 
