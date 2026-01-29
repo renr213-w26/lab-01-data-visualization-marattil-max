@@ -1,7 +1,7 @@
 ---
 title: "Lab 1 - Data visualization"
 author: "Kathrine Marattil"
-format: html
+format: pdf
 editor: visual
 ---
 
