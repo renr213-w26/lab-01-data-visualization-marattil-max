@@ -1,6 +1,7 @@
 ---
 title: "Lab 1 - Data visualization"
-format: html
+author: "Kathrine Marattil"
+format: pdf
 editor: visual
 ---
 
@@ -10,22 +11,183 @@ editor: visual
 
 ### Question 1
 
+```{r}
+library(tidyverse)
+library(scales)
+```
+
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100"
+  )
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 1000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 1,000"
+  )
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 10000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 10,000"
+  )
+ggplot(midwest, aes(x = popdensity)) +
+  geom_histogram(binwidth = 100000) +
+  labs(
+    x = "Population density",
+    y = "Count",
+    title = "Population density of midwesten counties",
+    subtitle = "Binwidth = 100,000"
+  )
+
+```
+
 ### Question 2
+
+```{r}
+ggplot(midwest, aes(x = popdensity)) +
+  geom_boxplot() +
+  labs(
+    title = "Population density of midwesten counties",
+    x = "Population Density",
+    y = "Count",
+  )
+```
+
+​​The whole range of population density by count is very wide, with most counties falling in the 620 to 2330 persons/unit area on average. Considering the whole min to max range, the population often falls on the lower end of the scale, with a good handful of counties with populations that are significantly greater. For example, the greatest outlier is Cook County in Illinois with a population of 88018 person/unit area. We can understand this as relevant, as Cook County has the largest number of municipalities, including the city of Chicago, thus leading to its dense population and outlier status in the midwest data set.
 
 ### Question 3
 
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = state, shape = state )) +
+  geom_point() +
+  labs(
+    title = "Population below the Poverty Line by Population with College Degree, by percentage",
+    x = "Population with College Degree (%)",
+    y = "Population below the Poverty Line (%)",
+  )
+```
+
+Generally, the trend between percent of popultion with a college degree and the percentage below the poverty line reflects exponential decay. This implies that a greater percentage of the population having a college degree correlates to a lower percentage of the population being below the poverty line. Additionally, there are potential asymptotes that imply that both the percentage of population below the poverty line and population that has college degrees is limited and can never realistically reach 100% for both variables, and the percentage of population below the poverty line settles to about 0-26% once the population with college degrees reach aboce 35%. However, Jackson County in Illinois is an outlier to this general standard, as its data point reflects 36.6% of the population with college degrees and 28.4% of poulation below the poverty line. The graph above shows the data between states, and all the states very similarly follow exponetial decaying trend line. All counties in Ohio have a very similar range with very few outliers, and Wishcosin have a significant outlier in Menominee County, which has a 48.7% of population below pverty line and 7.3% of population having college degrees.
+
 ### Question 4
+
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = state, shape = state )) +
+  geom_point() +
+  facet_wrap(~state)+
+  geom_smooth(se = FALSE)+
+  labs(
+    title = "Population below the Poverty Line by Population with College Degree, by percentage",
+    x = "Population with College Degree (%)",
+    y = "Population below the Poverty Line (%)",
+  )
+
+```
+
+I prefer the previous graph as it is a concise way to show almost the same data in the current graph. This graph, on the otherhand, separates the data by states in the 3 different ways (colour, shape, and 5 seperate graphs), which makes it difficult to understand the relation between states. However, the addition of the smooth curve fit is a really helpful way to identify trends in the data, and I believe the addition of geom_smooth() in the previous graph will help improve understanding and interpretation of the data.
 
 ### Question 5
 
+```{r}
+ggplot(midwest, aes(x = state, y = area, colour = state)) +
+  geom_boxplot() +
+  labs(
+    title = "Area of County by State",
+    x = "State",
+    y = "Area of County",
+  )
+
+```
+
+While the median for county size changes per state, the area for counties generlly stay within the same range. Within the state itself, the county areas can be quite limited as seen in Indiana, with its very small quartile range, or quite large as seen in Wisconsin, with a large median box. In the context of the graph, outliers represent states with counties that have significantly greater or smaller areas compared to the whole. This idea can be applied to Illinois, as we can interpret the one outlier to mean that, overall, all the counties in Illinois are relatively similar in size. The greatest outlier is in Marquette County, Michigan 
+
 ### Question 6
 
+```{r}
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+
+ggplot(midwest, aes(x = state, fill = metro))+
+  geom_bar()+
+  labs(
+    title = "Metro Counties vs Non-Metro Counties per State",
+    x = "State",
+    y = "Proportion",
+  )+ scale_y_continuous(label = label_number(scale = 1/100))+
+  coord_cartesian(ylim = c(0,100))
+
+
+  
+
+```
+
+In general, there is a trend between all states of the amount of non-metro counties being equal to or greater than the amount of metro counties in the state. For Illinois, Indiana, Michigan and Wisconsin, there is a greater than 50% of the counties are non-metro, with almost 75% of counties in Illinois being non-metro. Ohio can be highlighted for having an almost an equal proportion of metro to non-metro counties (50%).
+
 ### Question 7
+
+```{r}
+ggplot(midwest, aes(x = percollege, y = percbelowpoverty, colour = percwhite)) +
+  geom_point(size = 2, alpha = 0.5 ) + 
+  facet_wrap(~ state)+
+  labs(
+    x = "% college educated", 
+    y = "% below the poverty line", 
+    title = "Poverty vs. College Education by State, with racial composition per county"
+  )
+
+```
+
+Menominee County is the greatest outlier in Wisconsin.
+
+When comparing the racial composition of all the counties/states, the data shows that there is generally a low population of Black Americans, American Indians, Asians, and Other races. Thus, there is a greater caucasian population in the Midwest as a whole.
 
 ## Part 2
 
 **Enough about the Midwest!**
 
+```{r}
+nc_county <- read_csv("data/nc-county.csv")
+```
+
 ### Question 8
 
+I think that a larger land area will correlate to a lesser population density, therefore a negative relationship.
+
+```{r}
+ggplot(nc_county, aes(x = land_area_mi2, y = density )) +
+  geom_point() +
+  geom_smooth(se = FALSE)+
+  labs(
+    title = "Population Density vs Land Area(mi^2)",
+    x = "Land Area (mi^2)",
+    y = "Population density",
+  )
+```
+
+Based on the graph, my guess for the relationship between Land area and Population Density was incorrect. The graph shows a generally even and stable population density count for any change in land area throught smooth curve fit line, meaning there is no relationship between the two variables.
+
 ### Question 9
+
+```{r}
+ggplot(nc_county, aes(x = land_area_m2, y = density )) +
+  geom_point() +
+  geom_smooth(se = FALSE)+
+  labs(
+    title = "Population Density vs Land Area(m^2)",
+    x = "Land Area (m^2)",
+    y = "Population density",
+  )
+```
+
+The current is very similar to the graph created in exercise 8, with the same trend line. Thus, the relation between population density and land area in square metres is the same as land area in square miles. This is because the unit of measurement does not affect the association of two variables without a relationship.
